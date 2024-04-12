@@ -1,0 +1,95 @@
+%%% You need to use XeLaTeX to compile this project
+\documentclass[12pt,a4paper,oneside]{book}
+\usepackage{thesis-ict}
+
+%%% Packages
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage[table]{xcolor}
+\usepackage{minted}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage[sort,nobreak]{cite}
+\usepackage[nameinlink]{cleveref} % https://tex.stackexchange.com/a/54274
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{import}
+\usepackage[labelformat=simple,labelfont=bf]{subcaption} % Format simple removes ()
+\usepackage[nottoc]{tocbibind} % https://tex.stackexchange.com/a/8459
+\usepackage{setspace}\doublespacing
+
+%%% Options
+\crefname{chapter}{Chapter}{Chapters}
+\crefname{section}{Section}{Sections}
+\crefname{equation}{Equation}{Equations}
+\crefname{figure}{Figure}{Figures}
+\crefname{table}{Table}{Tables}
+\crefname{appendix}{Appendix}{Appendices}
+\renewcommand{\figurename}{\textbf{Figure}}
+\renewcommand{\tablename}{\textbf{Table}}
+\renewcommand{\thetable}{\arabic{chapter}.\arabic{table}}
+\renewcommand{\thefigure}{\arabic{chapter}.\arabic{figure}}
+\renewcommand{\thesubfigure}{(\alph{subfigure})} % Add the () here not when loading subcaption 
+\captionsetup[figure]{labelsep=colon,labelfont=bf}
+\captionsetup[table]{labelsep=colon,labelfont=bf}
+\definecolor{gray90}{gray}{0.9} % https://texblog.org/2011/09/02/coloring-every-alternate-table-row/
+\lstset{basicstyle=\ttfamily}
+\renewcommand\bibname{References}
+\setlist[itemize]{topsep=10pt,partopsep=4pt,parsep=2pt,itemsep=2pt,listparindent=\parindent{}}
+\setlist[enumerate]{topsep=10pt,partopsep=4pt,parsep=2pt,itemsep=2pt,listparindent=\parindent{}}
+
+%%% Thesis information; change accordingly (title, your name, advisor(s) and date)
+\parindent 1em
+\title{Title}
+\author{Alice Suzukakedai}
+\advisorA{Bob Ookayama}
+\advisorAjobtitle{Professor}
+% In case you have another advisor use the following:
+% \advisorB{Carol Ishikawadai}
+% \advisorBjobtitle{Associate Professor}
+\date{August 2022}
+
+\begin{document}
+
+\frontmatter
+\maketitle
+\mbox{}
+\thispagestyle{empty}
+\newpage
+
+\include{examples/abstract}          % Sample
+% \include{abstract}
+\tableofcontents
+\listoffigures
+\listoftables
+\include{examples/publications}      % Sample
+% \include{publications}
+\include{examples/acknowledgment}  % Sample
+% \include{acknowledgment}
+
+
+\mainmatter
+\include{examples/introduction}    % Sample
+% \include{introduction}
+\include{examples/background}      % Sample
+% \include{background}
+\include{examples/motivation}      % Sample
+% \include{motivation}
+\include{examples/proposedsystem}  % Sample
+% \include{proposedsystem}
+\include{examples/evaluation}      % Sample
+% \include{evaluation}
+\include{examples/relatedwork}     % Sample
+% \include{relatedwork}
+\include{examples/conclusion}      % Sample
+% \include{conclusion}
+\include{examples/appendix}          % Sample
+% \include{appendix}
+
+% \backmatter
+% \include{acknowledgement}
+% \newcommand{\BIBdecl}{\setlength{\itemsep}{0.27 em}}
+\bibliographystyle{unsrt}
+\bibliography{examples/main}       % Sample
+% \bibliography{main}
+
+\end{document}

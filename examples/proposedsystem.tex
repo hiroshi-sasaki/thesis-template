@@ -1,0 +1,43 @@
+\chapter{Proposed System}\label{ch:proposedsytem}
+
+Explain your proposed system/mechanism/technique.
+Figures are effective so better use them accordingly.
+Vector images are more beautiful than bitmaps so it is recommended to use pdf files.\footnote{Same can be said for graphs which we will see in \cref{sec:results}.}
+One caveat is that you do not want to have blank spaces surrounding your pdf file.
+If you have some, you can delete them by using commands such as:
+
+\begin{minted}[bgcolor=gray90]{bash}
+% pdfcrop --margins 0 input.pdf output.pdf
+\end{minted}
+
+% Code below becomes an error for xelatex (not for platex)
+% \begin{lstlisting}[language=bash,escapeinside={(*}{*)}]
+% (*\colorbox{gray90}{\% pdfcrop --margins 0 input.pdf output.pdf}*)
+% \end{lstlisting}
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.5\textwidth]{examples/figures/square}
+  \caption{A square.}\label{fig:square}
+\end{figure}
+
+Always refer to the figure in your body.
+\cref{fig:square} is a square.
+
+\begin{figure}[ht]
+  \centering
+  \begin{subfigure}[t]{0.45\textwidth}
+  \centering
+    \includegraphics[width=0.8\linewidth]{examples/figures/square}
+    \caption{A square.}\label{subfig:square}
+  \end{subfigure}
+  \quad
+  \begin{subfigure}[t]{0.45\textwidth}
+  \centering
+    \includegraphics[width=0.8\linewidth]{examples/figures/circle}
+    \caption{A circle.}\label{subfig:circle}
+  \end{subfigure}
+  \caption{A square and a circle.}\label{fig:square-circle}
+\end{figure}
+
+\cref{fig:square-circle} shows a square and a circle, while \cref{subfig:circle} represents only the circle.

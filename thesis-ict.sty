@@ -1,0 +1,145 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{thesis-ict}
+
+\RequirePackage[T1]{fontenc}
+\RequirePackage[cmex10]{amsmath}
+
+\RequirePackage{txfonts}
+\RequirePackage{fancyhdr}
+
+%%% cf. https://github.com/suchow/Dissertate/blob/master/assets/latex-base/Dissertate.cls
+% Fonts
+\RequirePackage{color}
+\usepackage[hidelinks]{hyperref}
+\RequirePackage{url}
+\RequirePackage{amssymb}
+\RequirePackage{mathspec}
+\setmathsfont(Digits,Latin,Greek)[Numbers={Proportional}]{EB Garamond}
+\setmathrm{EB Garamond}
+\AtBeginEnvironment{tabular}{\addfontfeature{RawFeature=+tnum}}
+\widowpenalty=300
+\clubpenalty=300
+\setromanfont[Numbers=OldStyle, Ligatures={Common, TeX}, Scale=1.0]{EB Garamond}
+\newfontfamily{\smallcaps}[RawFeature={+c2sc,+scmp}]{EB Garamond}
+\setsansfont[Scale=MatchLowercase, BoldFont={Lato Bold}]{Lato Regular}
+\setmonofont[Scale=MatchLowercase]{Source Code Pro}
+%\RequirePackage[labelfont={bf,sf,footnotesize,singlespacing},
+%                textfont={sf,footnotesize,singlespacing},
+%                justification={justified,RaggedRight},
+%                singlelinecheck=false,
+%                margin=0pt,
+%                figurewithin=chapter,
+%                tablewithin=chapter]{caption}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\RequirePackage{microtype}
+%%%
+
+\makeatletter
+
+% Headers and footers
+\def\ps@plain{%
+  \let\@mkboth \@gobbletwo
+  \def\@oddhead{\reset@font \hfil \thepage}%
+  \let\@oddfoot \@empty
+  \let\@evenhead \@empty
+  \let\@evenfoot \@oddfoot
+}
+
+\def\ps@myheadings{%
+\let\uppercase\relax\leftmark
+\let\@oddfoot\@empty
+\let\@evenfoot\@empty
+\def\@evenhead{\underline{\hb@xt@ \textwidth{\leftmark \hfil \thepage}}}%
+\def\@oddhead{\underline{\hb@xt@ \textwidth{\leftmark \hfil \thepage}}}%
+
+\def\chaptermark##1{%
+\markboth{%
+\ifnum \c@secnumdepth >\m@ne
+\if@mainmatter
+\chaptername \hskip 0.3em \thechapter. \hskip 0.4em
+\fi
+\fi
+##1}{}%
+}
+}
+\def\toprule{\hline\hline}
+\pagestyle{myheadings}
+
+% Tokyo Tech's logo
+% \def\tokyotechlogo{{\small\sc
+%   \hspace{17mm}\includegraphics[width=1.2cm, clip]{logo}\\\vspace{-\baselineskip}\vspace{-7.4mm}%{[width=1cm], vspace-5.2mm}
+%   \hspace{34mm}Tokyo Institute of Technology\\\vspace{-1\baselineskip}\vspace{3.0mm}%{hspace{12mm}}
+%   \hspace{34mm}Department of Information and Communications Engineering%%{hspace{12mm}}
+% }}
+\def\tokyotechlogo{{\small\sc
+  \hspace{29mm}\includegraphics[width=1.6cm, clip]{logo}\\\vspace{-\baselineskip}\vspace{-5.8mm}%{[width=1cm], vspace-5.2mm}
+  \hspace{49mm}{\large Tokyo Institute of Technology}\\\vspace{-1\baselineskip}\vspace{3.0mm}%{hspace{12mm}}
+}}
+\def\date#1{\gdef\@date{#1}}
+\def\title#1{\gdef\@title{#1}}
+\def\advisorA#1{\gdef\@advisorA{#1}}
+\def\advisorAjobtitle#1{\gdef\@advisorAjobtitle{#1}}
+\def\advisorB#1{\gdef\@advisorB{#1}}
+\def\advisorBjobtitle#1{\gdef\@advisorBjobtitle{#1}}
+\def\studentid#1{\gdef\@studentid{#1}}
+\def\author#1{\gdef\@author{#1}}
+
+\def\maketitle{
+\begin{titlepage}{
+\vspace*{-5em}\begin{flushleft}\tokyotechlogo\end{flushleft}
+\begin{center}
+\vspace{6em} {\LARGE \@title}\\
+\vspace{6em} {\Large \@author}\\
+\vspace{3em}
+{\large A thesis submitted in partial fulfillment of the requirements\\
+\vspace{0pt}for the degree of Master of Engineering}\\
+\vspace{3em}
+{\@ifundefined{@advisorB}{\large Advisor: \@advisorAjobtitle~\@advisorA}{
+\large \begin{tabular}{ll}
+    Advisors: & \@advisorAjobtitle~\@advisorA\vspace{-10pt}\\
+              & \@advisorBjobtitle~\@advisorB
+    \end{tabular}
+}}\\
+\vspace{3em}
+{\large Department of Information and Communications Engineering\\
+\vspace{-5pt}School of Engineering\\
+\vspace{0pt}Tokyo Institute of Technology}\\
+\vspace{3em}
+{\large \@date}
+\end{center}
+\eject}
+\end{titlepage}
+}
+
+% Margin
+\setlength\textheight{0.85\paperheight}
+\addtolength\textheight{-\topskip}
+\addtolength\textheight{-\headsep}
+\addtolength\textheight{-\footskip}
+\addtolength\textheight{-\topskip}
+\divide\textheight\baselineskip
+\multiply\textheight\baselineskip
+\addtolength\textheight{\topskip}
+\addtolength\textheight{.1\p@}
+
+\setlength\topmargin{\paperheight}
+\addtolength\topmargin{-\textheight}
+\addtolength\topmargin{-\topskip}
+\addtolength\topmargin{-\headsep}
+\addtolength\topmargin{-\footskip}
+\setlength\topmargin{0.5\topmargin}
+\addtolength\topmargin{-1.2truein}
+
+\setlength\textwidth{0.75\paperwidth}
+\setlength\oddsidemargin{\paperwidth}
+\addtolength\oddsidemargin{-0.75\paperwidth}
+\setlength\oddsidemargin{0.5\oddsidemargin}
+\addtolength\oddsidemargin{-1truein}
+\setlength\evensidemargin{\oddsidemargin}
+
+% Table of contents (display until subsection)
+\setcounter{tocdepth}{2}
+
+\def\headfont{\bfseries}
+
+\makeatother
